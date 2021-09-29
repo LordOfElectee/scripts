@@ -1,6 +1,4 @@
 #!/bin/bash
-# wget -q -O umee.sh https://api.nodes.guru/umee.sh && chmod +x umee.sh && sudo /bin/bash umee.sh
-
 
 exists()
 {
