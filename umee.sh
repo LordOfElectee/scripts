@@ -177,7 +177,7 @@ function installSoftware {
 	git clone --depth 1 --branch v0.2.0 https://github.com/umee-network/umee.git
 	cd umee && make install
 	umeed version
-	umeed init ${UMEE_NODENAME} --chain-id $UMEE_CHAIN
+	umeed init ${UMEE_NODENAME} --chain-id $UMEE_CHAIN --home /mnt/nroot
 	wget -O /mnt/nroot/.umee/config/genesis.json "https://raw.githubusercontent.com/umee-network/umee/main/networks/$UMEE_CHAIN/genesis.json"
 	# sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0.001uumee\"/; s/^pruning = \"default\"/pruning = \"nothing\"/" /mnt/nroot/.umee/config/app.toml
 	# sed -i.bak -e "s/^pruning = \"default\"/pruning = \"nothing\"/" /mnt/nroot/.umee/config/app.toml
@@ -204,7 +204,7 @@ function updateSoftware {
 	cd umee && make install
 	umeed version
 	rm /mnt/nroot/.umee/config/genesis.json
-	umeed init ${UMEE_NODENAME} --chain-id $UMEE_CHAIN
+	umeed init ${UMEE_NODENAME} --chain-id $UMEE_CHAIN --home /mnt/nroot
 	wget -O /mnt/nroot/.umee/config/genesis.json "https://raw.githubusercontent.com/umee-network/umee/main/networks/$UMEE_CHAIN/genesis.json"
 	peers="a9a84866786013f75138388fbf12cdfc425bd39c@137.184.69.184:26656,684dd9ce7746041d0453322808cc5b238861e386@137.184.65.210:26656,c4c425c66d2941ce4d5d98185aa90d2330de5efd@143.244.166.155:26656,eb42bdbd821fad7bd0048a741237625b4d954d18@143.244.165.138:26656"
 	sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" /mnt/nroot/.umee/config/config.toml
