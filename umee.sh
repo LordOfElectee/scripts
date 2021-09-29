@@ -236,7 +236,7 @@ Environment=\"DAEMON_HOME=/mnt/nroot\"
 Environment=\"DAEMON_RESTART_AFTER_UPGRADE=true\"
 #Environment=\"DAEMON_ALLOW_DOWNLOAD_BINARIES=true\"
 Environment=\"UNSAFE_SKIP_BACKUP=false\"
-ExecStart=/mnt/nroot/cosmovisor/cosmovisor start
+ExecStart=/mnt/nroot/cosmovisor/cosmovisor --home /mnt/root/.umee start
 Restart=on-failure
 LimitNOFILE=4096
 
