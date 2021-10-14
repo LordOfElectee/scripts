@@ -73,7 +73,7 @@ Description=Porta Node
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$HOME/porta-node/target/release/porta --chain $HOME/porta-node/chain-spec-padlock.json -d /mnt/volume/MARSOHOT --name '${PORTA_NODENAME}' --validator --port 30337 --ws-port 9949 --rpc-port 9937 --ws-external --rpc-cors all --rpc-methods=unsafe
+ExecStart=$HOME/porta-node/target/release/porta --chain $HOME/porta-node/chain-spec-padlock.json -d $HOME/porta-node/MARSOHOT --name '${PORTA_NODENAME}' --validator --port 30337 --ws-port 9949 --rpc-port 9937 --ws-external --rpc-cors all --rpc-methods=unsafe
 Restart=always
 RestartSec=3
 LimitNOFILE=10000
