@@ -36,9 +36,13 @@ function createDatabase {
     influx -execute 'GRANT READ ON "telegraf" TO "grafana"'
     sed -i 's|  # auth-enabled = false|  auth-enabled = true|g' /etc/influxdb/influxdb.conf
     systemctl restart influxdb
-    sed -i 's|  # password = "metricsmetricsmetricsmetrics"|  password = "$pass"|g' /etc/telegraf/telegraf.conf
+    sed -i 's|  # password = "metricsmetricsmetricsmetrics"|  password = '$pass'|g' /etc/telegraf/telegraf.conf
     systemctl restart telegraf
 }
+
+#function changeTelegrafConfig {
+#    sed -i 's|  # [[inputs.net]]|  [[inputs.net]]|g' /etc/telegraf/telegraf.conf
+#}
 
 echo “Введите опцию установки:”
 echo "1 - InfluxDB"
@@ -70,3 +74,4 @@ apt install mc -y
 apt install ncdu -y
 apt install net-tools -y
 apt update && apt upgrade -y
+timedatectl set-timezone Asia/Yekaterinburg
