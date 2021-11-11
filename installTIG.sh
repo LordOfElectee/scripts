@@ -3,7 +3,7 @@ function installInfluxDB {
     echo -e '\n\e[32mПодготовка к установке InfluxDB\e[0m\n' && sleep 1
     sudo apt install software-properties-common
     apt update && apt upgrade -y
-    wget https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb && dpkg -i influxdb_1.8.10_amd64.deb -y
+    wget https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb && yes | dpkg -i influxdb_1.8.10_amd64.deb
     systemctl start influxdb
     systemctl enable influxdb
     rm influxdb_1.8.10_amd64.deb
@@ -11,7 +11,7 @@ function installInfluxDB {
 
 function installTelegraf {
     echo -e '\n\e[32mПодготовка к установке Telegraf\e[0m\n' && sleep 1
-    wget https://dl.influxdata.com/telegraf/releases/telegraf_1.20.3-1_amd64.deb && dpkg -i telegraf_1.20.3-1_amd64.deb -y
+    wget https://dl.influxdata.com/telegraf/releases/telegraf_1.20.3-1_amd64.deb && yes | dpkg -i telegraf_1.20.3-1_amd64.deb
     systemctl start telegraf
     systemctl enable telegraf
     rm telegraf_1.20.3-1_amd64.deb
