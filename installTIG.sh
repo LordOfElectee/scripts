@@ -52,6 +52,7 @@ echo "0 - Не устанавливать мониторинг"
 echo "можно вводить несколько по возрастанию 12 / 13 / 23 / 123"
 read -p "Введите вариант установки: " setup
 read -p "Введите пароль: " pass
+read -p "Устанавливать время + mc + ncdu? (y/n) " base
 case $setup in
 1) installInfluxDB;;
 2) installTelegraf;; 
@@ -70,8 +71,11 @@ case $setup in
 0) break;;
 *) echo "Нет такой опции";;
 esac
-apt install mc -y
-apt install ncdu -y
-apt install net-tools -y
-apt update && apt upgrade -y
-timedatectl set-timezone Asia/Yekaterinburg
+
+case $base in
+y) apt install mc -y
+   apt install ncdu -y
+   apt install net-tools -y
+   apt update && apt upgrade -y
+   timedatectl set-timezone Asia/Yekaterinburg;;
+*) break;;
