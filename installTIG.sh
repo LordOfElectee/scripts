@@ -27,15 +27,15 @@ function installGrafana {
 
 function createDatabase {
 	  influx -execute 'CREATE DATABASE telegraf'
-    influx -execute 'CREATE USER admin WITH PASSWORD "$pass" WITH ALL PRIVILEGES'
-    influx -execute 'CREATE USER telegraf WITH PASSWORD "$pass"'
-    influx -execute 'CREATE USER grafana WITH PASSWORD "$pass"'
+    influx -execute "CREATE USER admin WITH PASSWORD '${pass}' WITH ALL PRIVILEGES"
+    influx -execute "CREATE USER telegraf WITH PASSWORD '${pass}'"
+    influx -execute "CREATE USER grafana WITH PASSWORD '${pass}'"
     influx -execute 'GRANT WRITE ON "telegraf" TO "telegraf"'
     influx -execute 'GRANT READ ON "telegraf" TO "grafana"'
-    # sed -i 's|  # auth-enabled = false|  auth-enabled = true|g' /etc/influxdb/influxdb.conf
-    # systemctl restart influxdb
-    # sed -i 's|  # password = "metricsmetricsmetricsmetrics"|  password = "$pass"|g' /etc/telegraf/telegraf.conf
-    # systemctl restart telegraf
+    sed -i 's|  # auth-enabled = false|  auth-enabled = true|g' /etc/influxdb/influxdb.conf
+    systemctl restart influxdb
+    sed -i 's|  # password = "metricsmetricsmetricsmetrics"|  password = "$pass"|g' /etc/telegraf/telegraf.conf
+    systemctl restart telegraf
 }
 
 echo “Введите опцию установки:”
@@ -64,7 +64,7 @@ case $setup in
 0) break;;
 *) echo "Нет такой опции";;
 esac
-# apt install mc -y
-# apt install ncdu -y
-# apt install net-tools -y
-# apt update && apt upgrade -y
+apt install mc -y
+apt install ncdu -y
+apt install net-tools -y
+apt update && apt upgrade -y
