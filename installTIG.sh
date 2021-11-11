@@ -36,7 +36,7 @@ function createDatabase {
     influx -execute 'GRANT READ ON "telegraf" TO "grafana"'
     sed -i 's|  # auth-enabled = false|  auth-enabled = true|g' /etc/influxdb/influxdb.conf
     systemctl restart influxdb
-    sed -i 's|  # password = "metricsmetricsmetricsmetrics"|  password = '$pass'|g' /etc/telegraf/telegraf.conf
+    sed -i 's|  # password = "metricsmetricsmetricsmetrics"|  password = "'$pass'"|g' /etc/telegraf/telegraf.conf
     systemctl restart telegraf
 }
 
