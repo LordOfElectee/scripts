@@ -1,32 +1,34 @@
 #!/bin/bash
 function installInfluxDB {
     echo -e '\n\e[32mПодготовка к установке InfluxDB\e[0m\n' && sleep 1
-	  sudo apt install software-properties-common
+    sudo apt install software-properties-common
     apt update && apt upgrade -y
-    wget https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb && dpkg -i influxdb_1.8.10_amd64.deb
+    wget https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb && dpkg -i influxdb_1.8.10_amd64.deb -y
     systemctl start influxdb
     systemctl enable influxdb
+    rm influxdb_1.8.10_amd64.deb
 }
 
 function installTelegraf {
-	  echo -e '\n\e[32mПодготовка к установке Telegraf\e[0m\n' && sleep 1
-    wget https://dl.influxdata.com/telegraf/releases/telegraf_1.20.3-1_amd64.deb && dpkg -i telegraf_1.20.3-1_amd64.deb 
+    echo -e '\n\e[32mПодготовка к установке Telegraf\e[0m\n' && sleep 1
+    wget https://dl.influxdata.com/telegraf/releases/telegraf_1.20.3-1_amd64.deb && dpkg -i telegraf_1.20.3-1_amd64.deb -y
     systemctl start telegraf
     systemctl enable telegraf
+    rm telegraf_1.20.3-1_amd64.deb
 }
 
 function installGrafana {
-	  echo -e '\n\e[32mПодготовка к установке Grafana\e[0m\n' && sleep 1
+    echo -e '\n\e[32mПодготовка к установке Grafana\e[0m\n' && sleep 1
     wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
     sudo apt-add-repository "deb https://packages.grafana.com/enterprise/deb stable main"
     sudo apt update
-    sudo apt install grafana
+    sudo apt install grafana -y
     sudo systemctl enable grafana-server
     sudo systemctl start grafana-server
 }
 
 function createDatabase {
-	  influx -execute 'CREATE DATABASE telegraf'
+    influx -execute 'CREATE DATABASE telegraf'
     influx -execute "CREATE USER admin WITH PASSWORD '${pass}' WITH ALL PRIVILEGES"
     influx -execute "CREATE USER telegraf WITH PASSWORD '${pass}'"
     influx -execute "CREATE USER grafana WITH PASSWORD '${pass}'"
