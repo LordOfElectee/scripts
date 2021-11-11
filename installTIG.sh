@@ -32,10 +32,10 @@ function createDatabase {
     influx -execute 'CREATE USER grafana WITH PASSWORD "$pass"'
     influx -execute 'GRANT WRITE ON "telegraf" TO "telegraf"'
     influx -execute 'GRANT READ ON "telegraf" TO "grafana"'
-    sed -i 's|  # auth-enabled = false|  auth-enabled = true|g' /etc/influxdb/influxdb.conf
-    systemctl restart influxdb
-    sed -i 's|  # password = "metricsmetricsmetricsmetrics"|  password = "$pass"|g' /etc/telegraf/telegraf.conf
-    systemctl restart telegraf
+    # sed -i 's|  # auth-enabled = false|  auth-enabled = true|g' /etc/influxdb/influxdb.conf
+    # systemctl restart influxdb
+    # sed -i 's|  # password = "metricsmetricsmetricsmetrics"|  password = "$pass"|g' /etc/telegraf/telegraf.conf
+    # systemctl restart telegraf
 }
 
 echo “Введите опцию установки:”
@@ -43,7 +43,7 @@ echo "1 - InfluxDB"
 echo "2 - Telegraf"
 echo "3 - Grafana"
 echo "0 - Не устанавливать мониторинг"
-echo "можно вводить несколько по возрастанию 12 / 13 / 23"
+echo "можно вводить несколько по возрастанию 12 / 13 / 23 / 123"
 read -p "Введите вариант установки: " setup
 read -p "Введите пароль: " pass
 case $setup in
@@ -64,7 +64,7 @@ case $setup in
 0) break;;
 *) echo "Нет такой опции";;
 esac
-apt install mc
-apt install ncdu
-apt install net-tools
-apt update && apt upgrade -y
+# apt install mc -y
+# apt install ncdu -y
+# apt install net-tools -y
+# apt update && apt upgrade -y
