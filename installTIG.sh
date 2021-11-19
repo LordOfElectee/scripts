@@ -79,3 +79,4 @@ y) apt install mc -y
    apt update && apt upgrade -y
    timedatectl set-timezone Asia/Yekaterinburg;;
 *) break;;
+esac
