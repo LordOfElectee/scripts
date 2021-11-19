@@ -68,7 +68,6 @@ case $setup in
     installTelegraf
     installGrafana
     createDatabase;;
-0) break;;
 *) echo "Нет такой опции";;
 esac
 
@@ -78,5 +77,5 @@ y) apt install mc -y
    apt install net-tools -y
    apt update && apt upgrade -y
    timedatectl set-timezone Asia/Yekaterinburg;;
-*) break;;
+*) echo "Вышли из установки";;
 esac
