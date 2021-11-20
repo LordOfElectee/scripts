@@ -40,9 +40,30 @@ function createDatabase {
     systemctl restart telegraf
 }
 
-#function changeTelegrafConfig {
+function changeTelegrafConfig {
 #    sed -i 's|  # [[inputs.net]]|  [[inputs.net]]|g' /etc/telegraf/telegraf.conf
-#}
+for line in $(ls /sys/class/net)
+do
+  if [ -z "$line" ]
+  then
+  break
+  fi 
+  if [ -z "$text" ]
+  then
+  text="\"$line\""
+  else
+  text=$text", \"$line\""
+  fi
+done
+
+if  [ -z "$line" ]
+then
+sed -i 's|# [[inputs.net]]|  [[inputs.net]]|g' /etc/telegraf/telegraf.conf
+sed -i 's|#   # interfaces = ["eth0"]|      $text|g' /etc/telegraf/telegraf.conf
+else
+echo -e '\n\e[31mНе обнаружено сетевых устройста по адресу /sys/class/net\e[0m\n' && sleep 1
+fi
+}
 
 echo “Введите опцию установки:”
 echo "1 - InfluxDB"
@@ -55,18 +76,22 @@ read -p "Введите пароль: " pass
 read -p "Устанавливать время + mc + ncdu? (y/n) " base
 case $setup in
 1) installInfluxDB;;
-2) installTelegraf;; 
+2) installTelegraf
+   changeTelegrafConfig;; 
 3) installGrafana;;
 12) installInfluxDB
     installTelegraf
-    createDatabase;;
+    createDatabase
+    changeTelegrafConfig;;
 13) installInfluxDB
     installGrafana;;
 23) installTelegraf
+    changeTelegrafConfig
     installGrafana;;
 123) installInfluxDB
     installTelegraf
     installGrafana
+    changeTelegrafConfig
     createDatabase;;
 *) echo "Нет такой опции";;
 esac
