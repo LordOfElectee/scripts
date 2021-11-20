@@ -58,8 +58,8 @@ done
 
 if  [ -n "$line" ]
 then
-sed -i 's|# [[inputs.net]]|  [[inputs.net]]|g' /etc/telegraf/telegraf.conf
-sed -i 's|#   # interfaces = ["eth0"]|      interfaces = ['$text']|g' /etc/telegraf/telegraf.conf
+sed -i 's|# \[\[inputs.net\]\]|  \[\[inputs.net\]\]|g' /etc/telegraf/telegraf.conf
+sed -i 's|#   # interfaces = \["eth0"\]|      interfaces = \['$text'\]|g' /etc/telegraf/telegraf.conf
 else
 echo -e '\n\e[31mНе обнаружено сетевых устройста по адресу /sys/class/net\e[0m\n' && sleep 1
 fi
