@@ -73,7 +73,7 @@ echo "3 - Grafana"
 echo "0 - Не устанавливать мониторинг"
 echo "можно вводить несколько по возрастанию 12 / 13 / 23 / 123"
 read -p "Введите вариант установки: " setup
-read -p "Введите пароль: " pass
+read -p "Введите пароль для TIG: " pass
 read -p "Устанавливать время + mc + ncdu? (y/n) " base
 case $setup in
 1) installInfluxDB;;
