@@ -51,9 +51,9 @@ do
   fi 
   if [ -z "$text" ]
   then
-  text="\"$line\""
+  text='\"'$line'\"'
   else
-  text=$text", \"$line\""
+  text=$text", "'\"'$line'\"'
   fi
 done
 
