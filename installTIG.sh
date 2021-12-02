@@ -7,7 +7,7 @@ function installInfluxDB {
     systemctl start influxdb
     systemctl enable influxdb
     rm influxdb_1.8.10_amd64.deb
-    ufw allow 4132/tcp
+    ufw allow 8086/tcp
 }
 
 function installTelegraf {
