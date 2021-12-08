@@ -75,7 +75,7 @@ echo "0 - Не устанавливать мониторинг"
 echo "можно вводить несколько по возрастанию 12 / 13 / 23 / 123"
 read -p "Введите вариант установки: " setup
 read -p "Введите пароль для TIG: " pass
-read -p "Устанавливать время + mc + ncdu + make? (y/n) " base
+read -p "Устанавливать время + mc + ncdu + make + net-tools + git + jq? (y/n) " base
 case $setup in
 1) installInfluxDB;;
 2) installTelegraf
@@ -99,10 +99,7 @@ case $setup in
 esac
 
 case $base in
-y) apt install mc -y
-   apt install ncdu -y
-   apt install net-tools -y
-   apt install make -y
+y) apt install mc ncdu net-tools make git jq -y
    apt update && apt upgrade -y
    timedatectl set-timezone Asia/Yekaterinburg;;
 *) echo "Вышли из установки";;
