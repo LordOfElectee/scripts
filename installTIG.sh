@@ -6,7 +6,7 @@ function installInfluxDB {
     wget https://dl.influxdata.com/influxdb/releases/influxdb2-2.1.1-amd64.deb && yes | dpkg -i influxdb2-2.1.1-amd64.deb
     systemctl start influxdb
     systemctl enable influxdb
-    rm influxdb_1.8.10_amd64.deb
+    rm influxdb2-2.1.1-amd64.deb
     ufw allow 8086/tcp
 }
 
@@ -15,7 +15,7 @@ function installTelegraf {
     wget https://dl.influxdata.com/telegraf/releases/telegraf_1.21.1-1_amd64.deb && yes | dpkg -i telegraf_1.21.1-1_amd64.deb
     systemctl start telegraf
     systemctl enable telegraf
-    rm telegraf_1.20.3-1_amd64.deb
+    rm telegraf_1.21.1-1_amd64.deb
 }
 
 function installGrafana {
