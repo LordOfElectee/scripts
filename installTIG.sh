@@ -101,10 +101,10 @@ esac
 case $base in
 y) apt install mc ncdu net-tools make git jq -y
    apt update && apt upgrade -y
-   timedatectl set-timezone Asia/Yekaterinburg;;
-   sudo sed -i 's|# en_US.UTF-8 UTF-8|en_US.UTF-8 UTF-8|g' /etc/locale.gen;;
-   sudo sed -i 's|# ru_RU.UTF-8 UTF-8|ru_RU.UTF-8 UTF-8|g' /etc/locale.gen;;
-   sudo locale-gen;;
+   timedatectl set-timezone Asia/Yekaterinburg
+   sudo sed -i 's|# en_US.UTF-8 UTF-8|en_US.UTF-8 UTF-8|g' /etc/locale.gen
+   sudo sed -i 's|# ru_RU.UTF-8 UTF-8|ru_RU.UTF-8 UTF-8|g' /etc/locale.gen
+   sudo locale-gen
    sudo localectl set-locale LANG=ru_RU.UTF-8;;
 *) echo "Вышли из установки";;
 esac
