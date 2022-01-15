@@ -78,7 +78,7 @@ read -p "Введите пароль для TIG: " pass
 read -p "Устанавливать время + mc + ncdu + make + net-tools + git + jq? (y/n) " base
 
 case $base in
-y) apt install mc ncdu net-tools make git jq ufw -y
+y) apt install mc ncdu net-tools make git jq ufw htop nano -y
    apt update && apt upgrade -y
    timedatectl set-timezone Asia/Yekaterinburg
    sudo sed -i 's|# en_US.UTF-8 UTF-8|en_US.UTF-8 UTF-8|g' /etc/locale.gen
