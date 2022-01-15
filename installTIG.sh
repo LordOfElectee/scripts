@@ -3,10 +3,10 @@ function installInfluxDB {
     echo -e '\n\e[32mПодготовка к установке InfluxDB\e[0m\n' && sleep 1
     sudo apt install software-properties-common
     apt update && apt upgrade -y
-    wget https://dl.influxdata.com/influxdb/releases/influxdb2-2.1.1-amd64.deb && yes | dpkg -i influxdb2-2.1.1-amd64.deb
+    wget https://dl.influxdata.com/influxdb/releases/influxdb-1.8.10_linux_amd64.tar.gz && yes | dpkg -i influxdb-1.8.10_linux_amd64.tar.gz
     systemctl start influxdb
     systemctl enable influxdb
-    rm influxdb2-2.1.1-amd64.deb
+    rm influxdb-1.8.10_linux_amd64.tar.gz
     ufw allow 8086/tcp
 }
 
